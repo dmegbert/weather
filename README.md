@@ -1,3 +1,3 @@
-# dad-jokes
+# weather
 repo for snips app
 
