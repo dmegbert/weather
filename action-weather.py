@@ -42,10 +42,12 @@ def action_wrapper(hermes, intent_message, conf):
     :return:
     """
     print(intent_message.intent.intent_name)
-    url = 'https://icanhazdadjoke.com/'
-    header = {'Accept': 'application/json', 'User-Agent': 'dad-jokes (https://github.com/dmegbert/dad-jokes)'}
+    url = """https://api.darksky.net/forecast/3f465bfe9fe88635dfddbde843fa7c84/41.593105,-81.526787?exclude=currently,flags"""
+
+    # header = {'Accept': 'application/json', 'User-Agent': 'weather (https://github.com/dmegbert/weather)'}
     try:
-        joke = requests.get(url, headers=header).json()['joke']
+        # joke = requests.get(url, headers=header).json()['hourly']['summary']
+        joke = requests.get(url).json()['hourly']['summary']
     except Exception as ex:
         print('An error occurred: {}'.format(ex))
         joke = 'An error occurred'
@@ -54,4 +56,4 @@ def action_wrapper(hermes, intent_message, conf):
 
 if __name__ == "__main__":
     with Hermes("localhost:1883") as h:
-        h.subscribe_intent("ElleDadSean:getJoke", subscribe_intent_callback).start()
+        h.subscribe_intent("ElleDadSean:getWeather", subscribe_intent_callback).start()
