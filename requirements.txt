@@ -1,4 +1,4 @@
-certifi==2018.8.24
+certifi==2022.12.7
 hermes-python==0.1.19
 idna==2.7
 requests==2.19.1
